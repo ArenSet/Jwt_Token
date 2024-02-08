@@ -37,7 +37,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .ignoring()
                 .antMatchers(HttpMethod.GET, "/api/login/**")
                 .antMatchers("user/registration/**")
-                .antMatchers("user/forgot/**");
+                .antMatchers("user/forgot/**")
+                .antMatchers("/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/webjars/**",
+                        "/swagger-resources/**",
+                        "/v3/api-docs/**",
+                        "/crm-ws/**");
     }
 
     @Override
@@ -52,6 +58,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/login/**").permitAll()
                 .antMatchers("/user/registration/**").permitAll()
                 .antMatchers("/user/forgot/**").permitAll()
+                .antMatchers("/swagger-ui/index.html#/").permitAll()
+                .antMatchers(HttpMethod.GET,
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/webjars/**",
+                        "/swagger-resources/**",
+                        "/v3/api-docs/**",
+                        "/crm-ws/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
