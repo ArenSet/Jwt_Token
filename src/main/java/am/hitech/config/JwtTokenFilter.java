@@ -19,6 +19,8 @@ public class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenProvider jwtTokenProvider;
 
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = jwtTokenProvider.resolveToken(request);
@@ -36,7 +38,4 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         }
         filterChain.doFilter(request, response);
     }
-
-
-
 }
